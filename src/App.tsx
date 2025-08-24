@@ -15,10 +15,10 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Complete Agricultural Trades in <span className="text-yellow-300">60 Seconds</span>
+              Get Agricultural Trade Quotes in <span className="text-yellow-300">30 Minutes</span>
             </h1>
             <p className="text-xl text-green-100 mb-8 max-w-3xl mx-auto">
-              Your digital sauda book - connecting verified buyers and sellers across India with instant WhatsApp integration
+              Your digital sauda book - get price information and connect with verified counterparties across India through instant WhatsApp integration
             </p>
             
             {/* Trust Indicators */}

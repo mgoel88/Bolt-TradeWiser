@@ -19,8 +19,8 @@ export const Footer: React.FC = () => {
               </div>
             </div>
             <p className="text-gray-300 mb-4 max-w-md">
-              Transforming agricultural commodity trading through digital innovation. 
-              Complete trades in under 60 seconds with verified partners across India.
+              Providing price information and connecting agricultural traders with verified counterparties. 
+              Get reliable market intelligence and trading support across India.
             </p>
             
             {/* Trust Indicators */}
@@ -31,7 +31,7 @@ export const Footer: React.FC = () => {
               </div>
               <div className="flex items-center space-x-2 text-sm text-gray-400">
                 <Clock className="w-4 h-4 text-green-400" />
-                <span>5-Min Response</span>
+                <span>30-Min Response</span>
               </div>
               <div className="flex items-center space-x-2 text-sm text-gray-400">
                 <Users className="w-4 h-4 text-green-400" />

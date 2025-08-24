@@ -171,22 +171,22 @@ _Generated via TradeWiser.com_`;
     <div className="bg-white rounded-2xl shadow-xl p-8 max-w-6xl mx-auto">
       {/* Instruction Header */}
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">Start Trading in 3 Simple Steps</h2>
+        <h2 className="text-3xl font-bold text-gray-900 mb-4">Get Trade Quotes in 3 Simple Steps</h2>
         <p className="text-lg text-gray-600 mb-2">
-          <span className="font-semibold text-green-600">Step 1:</span> Tell us what you want to buy or sell. 
-          <span className="font-semibold text-blue-600 ml-4">Step 2:</span> Name your price. 
-          <span className="font-semibold text-purple-600 ml-4">Step 3:</span> Choose your location.
+          <span className="font-semibold text-green-600">Step 1:</span> Tell us what commodity you need. 
+          <span className="font-semibold text-blue-600 ml-4">Step 2:</span> Share your target price. 
+          <span className="font-semibold text-purple-600 ml-4">Step 3:</span> Tell us your location.
         </p>
-        <p className="text-green-700 font-medium">Then get instant quotes directly on WhatsApp!</p>
+        <p className="text-green-700 font-medium">Then get price information and counterparty details on WhatsApp!</p>
       </div>
 
-      {/* Three-Column Trading Interface */}
+      {/* Three-Column Quote Request Interface */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
         
-        {/* Step X: Commodity & Quantity */}
+        {/* Step 1: Commodity & Quantity */}
         <div className="bg-green-50 rounded-xl p-6 border-2 border-green-100">
           <div className="flex items-center space-x-2 mb-4">
-            <div className="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">X</div>
+            <div className="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">1</div>
             <h3 className="text-xl font-bold text-green-800">Commodity & Quantity</h3>
           </div>
 
@@ -269,11 +269,11 @@ _Generated via TradeWiser.com_`;
           </div>
         </div>
 
-        {/* Step Y: Price */}
+        {/* Step 2: Target Price */}
         <div className="bg-blue-50 rounded-xl p-6 border-2 border-blue-100">
           <div className="flex items-center space-x-2 mb-4">
-            <div className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">Y</div>
-            <h3 className="text-xl font-bold text-blue-800">Price</h3>
+            <div className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">2</div>
+            <h3 className="text-xl font-bold text-blue-800">Target Price</h3>
           </div>
 
           {/* Price Type Toggle */}
@@ -345,20 +345,20 @@ _Generated via TradeWiser.com_`;
           <div className="mt-4 p-3 bg-blue-100 rounded-lg">
             <div className="flex items-center space-x-2 text-blue-800">
               <TrendingUp className="w-4 h-4" />
-              <span className="text-sm font-medium">Get best quotes based on market rates</span>
+              <span className="text-sm font-medium">We'll find counterparties matching your price range</span>
             </div>
           </div>
         </div>
 
-        {/* Step Z: Location */}
+        {/* Step 3: Delivery Location */}
         <div className="bg-purple-50 rounded-xl p-6 border-2 border-purple-100">
           <div className="flex items-center space-x-2 mb-4">
-            <div className="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">Z</div>
-            <h3 className="text-xl font-bold text-purple-800">Location</h3>
+            <div className="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">3</div>
+            <h3 className="text-xl font-bold text-purple-800">Delivery Location</h3>
           </div>
 
           <div className="relative">
-            <label className="block text-sm font-medium text-gray-700 mb-2">City/Town</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Where do you need delivery?</label>
             <div className="relative">
               <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
@@ -366,7 +366,7 @@ _Generated via TradeWiser.com_`;
                 value={tradingData.location}
                 onChange={(e) => handleLocationSearch(e.target.value)}
                 onFocus={() => setShowLocationDropdown(true)}
-                placeholder="Search your city..."
+                placeholder="Enter delivery city/town..."
                 className="w-full pl-10 pr-4 p-3 border-2 border-gray-200 rounded-lg focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
               />
             </div>
@@ -419,7 +419,7 @@ _Generated via TradeWiser.com_`;
           className="w-full lg:w-auto inline-flex items-center justify-center space-x-3 bg-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-lg"
         >
           <MessageSquare className="w-6 h-6" />
-          <span>Get Quotes on WhatsApp</span>
+          <span>Get Price Info on WhatsApp</span>
           <ExternalLink className="w-5 h-5" />
         </button>
 
@@ -435,19 +435,19 @@ _Generated via TradeWiser.com_`;
         </div>
 
         <p className="text-gray-600 text-sm">
-          Prefer phone or email? Contact us directly. Our team replies within 5 minutes.
+          Prefer phone or email? Contact us directly. Our team replies within 30 minutes.
         </p>
       </div>
 
-      {/* End-to-End Service Promise */}
+      {/* Service Promise */}
       <div className="mt-8 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6 text-center">
         <div className="flex items-center justify-center space-x-2 mb-3">
           <CheckCircle className="w-6 h-6 text-green-600" />
-          <h4 className="text-lg font-bold text-gray-900">Complete End-to-End Service</h4>
+          <h4 className="text-lg font-bold text-gray-900">Complete Trading Support</h4>
         </div>
         <p className="text-gray-700">
-          We handle every step: connect with trusted buyers or sellers, manage price negotiation, 
-          sampling, documentation, and delivery as your broker—end-to-end!
+          We provide price information, connect you with verified counterparties, and support 
+          price negotiation, sampling, documentation, and delivery coordination.
         </p>
       </div>
     </div>

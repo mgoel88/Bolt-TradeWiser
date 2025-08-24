@@ -9,8 +9,8 @@ export const TrustBadges: React.FC = () => {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Officially Backed by Government of India</h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            TradeWiser is operated by Mfarm Ventures Private Limited, a DPIIT-recognized startup 
-            supported by leading agricultural innovation and research partners.
+            TradeWiser provides price information and connects you with verified counterparties. 
+            Operated by Mfarm Ventures Private Limited, a DPIIT-recognized startup supported by leading agricultural innovation partners.
           </p>
         </div>
 
@@ -75,8 +75,8 @@ export const TrustBadges: React.FC = () => {
         <div className="bg-gray-50 rounded-xl p-8 text-center">
           <h3 className="text-2xl font-bold text-gray-900 mb-4">Trusted by Agricultural Community</h3>
           <p className="text-lg text-gray-700 mb-6">
-            TradeWiser is trusted by 10,000+ active traders and is part of an ecosystem supported by 
-            leading agricultural innovation and research partners.
+            TradeWiser provides reliable price information and counterparty connections to 10,000+ active traders. 
+            Part of an ecosystem supported by leading agricultural innovation and research partners.
           </p>
           
           {/* Stats */}
@@ -86,7 +86,7 @@ export const TrustBadges: React.FC = () => {
               <div className="text-gray-600">Active Traders</div>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm">
-              <div className="text-3xl font-bold text-blue-600 mb-1">5 Min</div>
+              <div className="text-3xl font-bold text-blue-600 mb-1">30 Min</div>
               <div className="text-gray-600">Response Time</div>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm">

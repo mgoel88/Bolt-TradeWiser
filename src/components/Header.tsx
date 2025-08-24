@@ -42,7 +42,7 @@ export const Header: React.FC = () => {
               className="flex items-center space-x-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
             >
               <MessageSquare className="w-4 h-4" />
-              <span className="text-sm">WhatsApp</span>
+              <span className="text-sm">Get Quotes</span>
             </a>
 
             {/* Mobile menu button */}
