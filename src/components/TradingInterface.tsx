@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MessageSquare, Phone, Mail, MapPin, Package, DollarSign, TrendingUp, CheckCircle, ExternalLink } from 'lucide-react';
+import { MessageSquare, Phone, Mail, MapPin, Package, DollarSign, TrendingUp, CheckCircle, ExternalLink, ShoppingCart, Truck } from 'lucide-react';
 
 interface TradingData {
   category: string;
@@ -102,6 +102,7 @@ export const TradingInterface: React.FC = () => {
   const [filteredCities, setFilteredCities] = useState<string[]>([]);
   const [showCommodityDropdown, setShowCommodityDropdown] = useState(false);
   const [showLocationDropdown, setShowLocationDropdown] = useState(false);
+  const [tradeIntent, setTradeIntent] = useState<'buy' | 'sell'>('buy');
 
   useEffect(() => {
     if (tradingData.category && categories[tradingData.category as keyof typeof categories]) {
@@ -139,14 +140,19 @@ export const TradingInterface: React.FC = () => {
       ? `₹${tradingData.singlePrice.toLocaleString('en-IN')}`
       : `₹${tradingData.minPrice.toLocaleString('en-IN')} - ₹${tradingData.maxPrice.toLocaleString('en-IN')}`;
 
+    const intentText = tradeIntent === 'buy' ? 'looking to buy' : 'have available for sale';
+    const locationText = tradeIntent === 'buy' ? `Delivery to: ${tradingData.location}` : `Available at: ${tradingData.location}`;
+
     return `🌾 *TradeWiser - Agricultural Trading Request*
+
+I'm ${intentText}:
 
 📦 *Commodity:* ${tradingData.commodity}
 ⚖️ *Quantity:* ${tradingData.quantity} ${tradingData.unit}
 💰 *Price:* ${priceText} per quintal
-📍 *Location:* ${tradingData.location}
+📍 *${locationText}*
 
-I'm looking for quotes for the above commodity. Please connect me with verified traders.
+Please connect me with verified ${tradeIntent === 'buy' ? 'sellers' : 'buyers'}.
 
 _Generated via TradeWiser.com_`;
   };
@@ -172,10 +178,39 @@ _Generated via TradeWiser.com_`;
       {/* Instruction Header */}
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold text-gray-900 mb-4">Get Trade Quotes in 3 Simple Steps</h2>
+        
+        {/* Buy/Sell Toggle */}
+        <div className="flex justify-center mb-6">
+          <div className="flex space-x-1 bg-gray-100 rounded-lg p-1">
+            <button
+              onClick={() => setTradeIntent('buy')}
+              className={`flex items-center space-x-2 px-6 py-3 rounded-md font-medium transition-all duration-200 ${
+                tradeIntent === 'buy'
+                  ? 'bg-blue-600 text-white shadow-sm'
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              <ShoppingCart className="w-5 h-5" />
+              <span>Looking to Buy</span>
+            </button>
+            <button
+              onClick={() => setTradeIntent('sell')}
+              className={`flex items-center space-x-2 px-6 py-3 rounded-md font-medium transition-all duration-200 ${
+                tradeIntent === 'sell'
+                  ? 'bg-green-600 text-white shadow-sm'
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              <Truck className="w-5 h-5" />
+              <span>Have Stock to Sell</span>
+            </button>
+          </div>
+        </div>
+        
         <p className="text-lg text-gray-600 mb-2">
           <span className="font-semibold text-green-600">Step 1:</span> Tell us what commodity you need. 
           <span className="font-semibold text-blue-600 ml-4">Step 2:</span> Share your target price. 
-          <span className="font-semibold text-purple-600 ml-4">Step 3:</span> Tell us your location.
+          <span className="font-semibold text-purple-600 ml-4">Step 3:</span> Tell us your {tradeIntent === 'buy' ? 'delivery location' : 'stock location'}.
         </p>
         <p className="text-green-700 font-medium">Then get price information and counterparty details on WhatsApp!</p>
       </div>
@@ -351,14 +386,26 @@ _Generated via TradeWiser.com_`;
         </div>
 
         {/* Step 3: Delivery Location */}
-        <div className="bg-purple-50 rounded-xl p-6 border-2 border-purple-100">
+        <div className={`rounded-xl p-6 border-2 ${
+          tradeIntent === 'buy' 
+            ? 'bg-purple-50 border-purple-100' 
+            : 'bg-orange-50 border-orange-100'
+        }`}>
           <div className="flex items-center space-x-2 mb-4">
-            <div className="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">3</div>
-            <h3 className="text-xl font-bold text-purple-800">Delivery Location</h3>
+            <div className={`text-white rounded-full w-8 h-8 flex items-center justify-center font-bold ${
+              tradeIntent === 'buy' ? 'bg-purple-600' : 'bg-orange-600'
+            }`}>3</div>
+            <h3 className={`text-xl font-bold ${
+              tradeIntent === 'buy' ? 'text-purple-800' : 'text-orange-800'
+            }`}>
+              {tradeIntent === 'buy' ? 'Delivery Location' : 'Stock Location'}
+            </h3>
           </div>
 
           <div className="relative">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Where do you need delivery?</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              {tradeIntent === 'buy' ? 'Where do you need delivery?' : 'Where is your stock located?'}
+            </label>
             <div className="relative">
               <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
@@ -366,8 +413,12 @@ _Generated via TradeWiser.com_`;
                 value={tradingData.location}
                 onChange={(e) => handleLocationSearch(e.target.value)}
                 onFocus={() => setShowLocationDropdown(true)}
-                placeholder="Enter delivery city/town..."
-                className="w-full pl-10 pr-4 p-3 border-2 border-gray-200 rounded-lg focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+                placeholder={tradeIntent === 'buy' ? 'Enter delivery city/town...' : 'Enter stock location...'}
+                className={`w-full pl-10 pr-4 p-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-opacity-20 ${
+                  tradeIntent === 'buy' 
+                    ? 'focus:border-purple-500 focus:ring-purple-500' 
+                    : 'focus:border-orange-500 focus:ring-orange-500'
+                }`}
               />
             </div>
 
@@ -380,7 +431,9 @@ _Generated via TradeWiser.com_`;
                       setTradingData(prev => ({ ...prev, location: city }));
                       setShowLocationDropdown(false);
                     }}
-                    className="w-full text-left px-4 py-2 hover:bg-purple-50 transition-colors flex items-center space-x-2"
+                    className={`w-full text-left px-4 py-2 transition-colors flex items-center space-x-2 ${
+                      tradeIntent === 'buy' ? 'hover:bg-purple-50' : 'hover:bg-orange-50'
+                    }`}
                   >
                     <MapPin className="w-4 h-4 text-gray-400" />
                     <span>{city}</span>
@@ -416,10 +469,14 @@ _Generated via TradeWiser.com_`;
         <button
           onClick={openWhatsApp}
           disabled={!isFormValid()}
-          className="w-full lg:w-auto inline-flex items-center justify-center space-x-3 bg-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-lg"
+          className={`w-full lg:w-auto inline-flex items-center justify-center space-x-3 text-white px-8 py-4 rounded-xl font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-lg ${
+            tradeIntent === 'buy' 
+              ? 'bg-blue-600 hover:bg-blue-700' 
+              : 'bg-green-600 hover:bg-green-700'
+          }`}
         >
           <MessageSquare className="w-6 h-6" />
-          <span>Get Price Info on WhatsApp</span>
+          <span>Find {tradeIntent === 'buy' ? 'Sellers' : 'Buyers'} on WhatsApp</span>
           <ExternalLink className="w-5 h-5" />
         </button>
 
@@ -446,7 +503,7 @@ _Generated via TradeWiser.com_`;
           <h4 className="text-lg font-bold text-gray-900">Complete Trading Support</h4>
         </div>
         <p className="text-gray-700">
-          We provide price information, connect you with verified counterparties, and support 
+          We provide price information, connect you with verified {tradeIntent === 'buy' ? 'sellers' : 'buyers'}, and support 
           price negotiation, sampling, documentation, and delivery coordination.
         </p>
       </div>
