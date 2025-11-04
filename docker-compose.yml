@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    container_name: tradewiser-db
+    environment:
+      POSTGRES_DB: tradewiser
+      POSTGRES_USER: tradewiser_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-tradewiser_pass}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tradewiser_user -d tradewiser"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tradewiser-app
+    environment:
+      DATABASE_URL: postgresql://tradewiser_user:${DB_PASSWORD:-tradewiser_pass}@postgres:5432/tradewiser
+      NODE_ENV: production
+    ports:
+      - "5000:5000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

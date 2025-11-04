@@ -154,7 +154,7 @@ I'm ${intentText}:
 
 Please connect me with verified ${tradeIntent === 'buy' ? 'sellers' : 'buyers'}.
 
-_Generated via TradeWiser.com_`;
+_Generated via TradeWiser.in_`;
   };
 
   const openWhatsApp = () => {
@@ -485,9 +485,9 @@ _Generated via TradeWiser.com_`;
             <Phone className="w-4 h-4" />
             <span>+91 79829 85895</span>
           </a>
-          <a href="mailto:support@tradewiser.com" className="flex items-center space-x-2 hover:text-green-600 transition-colors">
+          <a href="mailto:support@tradewiser.in" className="flex items-center space-x-2 hover:text-green-600 transition-colors">
             <Mail className="w-4 h-4" />
-            <span>support@tradewiser.com</span>
+            <span>support@tradewiser.in</span>
           </a>
         </div>
 

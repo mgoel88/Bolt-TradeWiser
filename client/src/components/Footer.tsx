@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wheat, MapPin, Phone, Mail, MessageSquare, Shield, Clock, Users } from 'lucide-react';
+import { MapPin, Phone, Mail, MessageSquare, Shield, Clock, Users } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
@@ -10,12 +10,10 @@ export const Footer: React.FC = () => {
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="bg-green-600 p-2 rounded-lg">
-                <Wheat className="w-6 h-6 text-white" />
-              </div>
+              <img src="/logo.png" alt="TradeWiser" className="h-12 w-auto" />
               <div>
-                <h3 className="text-xl font-bold">TradeWiser</h3>
-                <p className="text-gray-400 text-sm">Digital Sauda Book</p>
+                <h3 className="text-xl font-bold">TradeWiser™</h3>
+                <p className="text-gray-400 text-sm">Commodity to Capital</p>
               </div>
             </div>
             <p className="text-gray-300 mb-4 max-w-md">
@@ -26,15 +24,15 @@ export const Footer: React.FC = () => {
             {/* Trust Indicators */}
             <div className="flex flex-wrap gap-4 mb-6">
               <div className="flex items-center space-x-2 text-sm text-gray-400">
-                <Shield className="w-4 h-4 text-green-400" />
+                <Shield className="w-4 h-4" style={{color: '#B88A3D'}} />
                 <span>Verified Partners</span>
               </div>
               <div className="flex items-center space-x-2 text-sm text-gray-400">
-                <Clock className="w-4 h-4 text-green-400" />
+                <Clock className="w-4 h-4" style={{color: '#B88A3D'}} />
                 <span>30-Min Response</span>
               </div>
               <div className="flex items-center space-x-2 text-sm text-gray-400">
-                <Users className="w-4 h-4 text-green-400" />
+                <Users className="w-4 h-4" style={{color: '#B88A3D'}} />
                 <span>10,000+ Traders</span>
               </div>
             </div>
@@ -67,7 +65,7 @@ export const Footer: React.FC = () => {
               </div>
               <div className="flex items-center space-x-3 text-gray-300">
                 <Mail className="w-5 h-5 text-gray-400 flex-shrink-0" />
-                <span className="text-sm">support@tradewiser.com</span>
+                <span className="text-sm">support@tradewiser.in</span>
               </div>
               <div className="flex items-center space-x-3 text-gray-300">
                 <MessageSquare className="w-5 h-5 text-gray-400 flex-shrink-0" />
