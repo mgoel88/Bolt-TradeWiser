@@ -61,8 +61,18 @@ export default function Dashboard() {
       return;
     }
 
+    // Get access token from localStorage
+    const accessToken = localStorage.getItem('accessToken');
+    
     // Open app in new tab with auth token
-    window.open(app.url, '_blank');
+    if (accessToken) {
+      // Pass token as URL parameter for cross-domain authentication
+      const url = new URL(app.url);
+      url.searchParams.set('token', accessToken);
+      window.open(url.toString(), '_blank');
+    } else {
+      window.open(app.url, '_blank');
+    }
   };
 
   const handleLogout = async () => {
