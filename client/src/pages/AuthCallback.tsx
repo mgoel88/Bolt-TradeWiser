@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/lib/auth-context';
 
 export default function AuthCallback() {
   const [, setLocation] = useLocation();
   const { toast } = useToast();
+  const { checkAuth } = useAuth();
 
   useEffect(() => {
     const handleCallback = async () => {
@@ -28,13 +30,14 @@ export default function AuthCallback() {
 
         const data = await response.json();
 
-        if (response.ok) {
-          toast({
-            title: 'Success',
-            description: 'Successfully signed in with Google'
-          });
-          setLocation('/dashboard');
-        } else {
+          if (response.ok) {
+            await checkAuth(); // Update auth context
+            toast({
+              title: 'Success',
+              description: 'Successfully signed in with Google'
+            });
+            setLocation('/dashboard');
+          } else {
           throw new Error(data.error || 'Authentication failed');
         }
       } catch (error) {
